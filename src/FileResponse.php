@@ -18,8 +18,11 @@ class FileResponse
      * @param null $outputName
      * @return Response|static
      */
-    public static function getResponse(Response $response, $fileName, $outputName = null)
+    public static function getResponse(Response $response, $fileName, $outputName = null, $notFoundImage = null)
     {
+        if(!$fd = fopen ($fileName, "r")) {
+            $fileName = $notFoundImage ? $notFoundImage : __DIR__."/file_not_found.png";
+        }
 
         if ($fd = fopen ($fileName, "r")) {
 
