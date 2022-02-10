@@ -10,7 +10,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "MyCodebox\\slim-file-response\\": "src/"
+            "MyCodebox\\SlimFileResponse\\": "src/"
         }
     },
     "minimum-stability": "dev"
