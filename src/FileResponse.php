@@ -1,13 +1,13 @@
 <?php
 
-namespace MyCodebox\SlimFileResponse;
+namespace MyCodebox\SlimFileResponsePlus;
 
 use Slim\Http\Response;
 use Slim\Http\Stream;
 
 /**
  * Class FileResponse
- * @package MyCodebox\SlimFileResponse
+ * @package MyCodebox\SlimFileResponsePlus
  */
 class FileResponse
 {
@@ -16,61 +16,65 @@ class FileResponse
      * @param string $fileName
      *
      * @param null $outputName
+     * @param null $notFoundImage
      * @return Response|static
      */
-    public static function getResponse(Response $response, $fileName, $outputName = null, $notFoundImage = null)
+    public static function getResponse(Response $response, $fileName, $outputName = null, $notFoundImagePath = null)
     {
-        if(!$fd = fopen ($fileName, "r")) {
-            $fileName = $notFoundImage ? $notFoundImage : __DIR__."/file_not_found.png";
+        if (!$fd = fopen($fileName, "r")) {
+            $fileName = !is_null($notFoundImagePath) ? $notFoundImagePath : __DIR__."/file_not_found.png";
         }
 
-        if ($fd = fopen ($fileName, "r")) {
-
+        if ($fd = fopen($fileName, "r")) {
             $size = filesize($fileName);
             $path_parts = pathinfo($fileName);
             $ext = strtolower($path_parts["extension"]);
 
-            if(!$outputName) {
+            if (!$outputName) {
                 $outputName = $path_parts["basename"];
-            }else{
-                if(count(explode('.', $outputName)) <= 1){
+            } else {
+                if (count(explode('.', $outputName)) <= 1) {
                     $outputName = $outputName.'.'.$ext;
                 }
             }
 
             switch ($ext) {
                 case "pdf":
-                    $response = $response->withHeader("Content-type","application/pdf");
+                    $response = $response->withHeader("Content-type", "application/pdf");
                     break;
 
                 case "png":
-                    $response = $response->withHeader("Content-type","image/png");
+                    $response = $response->withHeader("Content-type", "image/png");
                     break;
 
                 case "gif":
-                    $response = $response->withHeader("Content-type","image/gif");
+                    $response = $response->withHeader("Content-type", "image/gif");
                     break;
 
                 case "jpeg":
-                    $response = $response->withHeader("Content-type","image/jpeg");
+                    $response = $response->withHeader("Content-type", "image/jpeg");
                     break;
 
                 case "jpg":
-                    $response = $response->withHeader("Content-type","image/jpg");
+                    $response = $response->withHeader("Content-type", "image/jpg");
                     break;
 
                 case "mp3":
-                    $response = $response->withHeader("Content-type","audio/mpeg");
+                    $response = $response->withHeader("Content-type", "audio/mpeg");
                     break;
 
-                default;
-                    $response = $response->withHeader("Content-type","application/octet-stream");
+                default:
+                    $response = $response->withHeader("Content-type", "application/octet-stream");
                     break;
             }
 
-            $response = $response->withHeader("Content-Disposition",'filename="'.$outputName.'"');
-            $response = $response->withHeader("Cache-control","private");
-            $response = $response->withHeader("Content-length",$size);
+            $response = $response->withHeader("Content-Disposition", 'filename="'.$outputName.'"');
+            $response = $response->withHeader("Cache-control", "private");
+            $response = $response->withHeader("Content-length", $size);
+
+        } else {
+
+            return $response->withStatus(404);
 
         }
 
@@ -80,5 +84,4 @@ class FileResponse
 
         return $response;
     }
-
 }
