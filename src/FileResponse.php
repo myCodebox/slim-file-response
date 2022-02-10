@@ -1,13 +1,13 @@
 <?php
 
-namespace MyCodebox\slimFileResponse;
+namespace MyCodebox\SlimFileResponse;
 
 use Slim\Http\Response;
 use Slim\Http\Stream;
 
 /**
  * Class FileResponse
- * @package MyCodebox\slimFileResponse
+ * @package MyCodebox\SlimFileResponse
  */
 class FileResponse
 {
