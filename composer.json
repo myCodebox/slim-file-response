@@ -1,6 +1,5 @@
 {
     "name": "mycodebox/slim-file-response",
-    "name": "mycodebox/slim-file-response",
     "description": "Slim File Response",
     "type": "library",
     "keywords": ["slim", "slim framework", "http", "response", "image", "file", "http-file-response", "download", "php download", "download file"],
@@ -14,5 +13,5 @@
             "MyCodebox\\slim-file-response\\": "src/"
         }
     },
-    "minimum-stability": "dev-main"
+    "minimum-stability": "dev"
 }
