@@ -1,0 +1,17 @@
+{
+    "name": "mycodebox/slim-file-response",
+    "description": "Slim File Response",
+    "type": "library",
+    "keywords": ["slim", "slim framework", "http", "response", "image", "file", "http-file-response", "download", "php download", "download file"],
+    "require": {
+        "slim/slim": "^3.0",
+        "php": ">=5.5.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MyCodebox\\slim-file-response\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
