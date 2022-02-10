@@ -1,4 +1,4 @@
-# Slim Framework File Response Plus
+# Slim Framework File Response Plus v1.0.0
 
 Slim Framework 3 File Response with Fallback Image or 404 Not Found
 
@@ -44,7 +44,7 @@ $app->get('/test/file/{filename}', function ($request, $response) {
     $notFound = $_SERVER["DOCUMENT_ROOT"]. "/path/to/your/image/file_not_found.png";
     $fileName = $request->getAttribute('filename');
     $filePath = $_SERVER["DOCUMENT_ROOT"]. "/path/to/your/file/$fileName";
-    
+
     return \MyCodebox\SlimFileResponse\FileResponse::getResponse($response, $filePath, null, $notFound);
 });
 ```
