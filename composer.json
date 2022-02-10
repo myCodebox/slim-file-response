@@ -13,5 +13,5 @@
             "MyCodebox\\slim-file-response\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev-bugfix"
 }
