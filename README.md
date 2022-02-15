@@ -1,4 +1,4 @@
-# Slim Framework File Response Plus v1.0.0
+# Slim Framework File Response Plus v1.0.1
 
 Slim Framework 3 File Response with Fallback Image or 404 Not Found
 

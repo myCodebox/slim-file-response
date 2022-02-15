@@ -21,11 +21,11 @@ class FileResponse
      */
     public static function getResponse(Response $response, $fileName, $outputName = null, $notFoundImagePath = null)
     {
-        if (!$fd = fopen($fileName, "r")) {
+        if (!file_exists($fileName)) {
             $fileName = !is_null($notFoundImagePath) ? $notFoundImagePath : __DIR__."/file_not_found.png";
         }
 
-        if ($fd = fopen($fileName, "r")) {
+        if (file_exists($fileName) && $fd = fopen($fileName, "r")) {
             $size = filesize($fileName);
             $path_parts = pathinfo($fileName);
             $ext = strtolower($path_parts["extension"]);
