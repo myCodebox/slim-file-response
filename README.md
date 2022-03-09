@@ -44,7 +44,8 @@ $app->get('/test/file/{filename}', function ($request, $response) {
     $notFound = $_SERVER["DOCUMENT_ROOT"]. "/path/to/your/image/file_not_found.png";
     $fileName = $request->getAttribute('filename');
     $filePath = $_SERVER["DOCUMENT_ROOT"]. "/path/to/your/file/$fileName";
+    $caching  = true; // default is false - withLastModified( filemtime(fileName) )
 
-    return \MyCodebox\SlimFileResponse\FileResponse::getResponse($response, $filePath, null, $notFound);
+    return \MyCodebox\SlimFileResponse\FileResponse::getResponse($response, $filePath, null, $notFound, $caching);
 });
 ```
